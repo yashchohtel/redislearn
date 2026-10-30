@@ -5,6 +5,7 @@ import User from './modals/user.modal.js'
 import Redis from "ioredis";
 import rateLimiter from "./middleware/ratelimit.js";
 import sendEmail from "./config/sendEmail.js";
+import emailQueue from "./bullMq/queue.js";
 
 dotenv.config();
 
@@ -34,7 +35,11 @@ app.post("/api/users", async (req, res) => {
         // Delete old Redis cache
         await redis.del("users:all");
 
-        await sendEmail();
+        await emailQueue.add("send-email", {
+            to: email,
+            subject: `welcome ${name}`,
+            message: "Welcome to our app!"
+        });
 
         res.status(201).json({
             message: "User created successfully",
