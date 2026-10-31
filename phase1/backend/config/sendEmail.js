@@ -7,14 +7,6 @@ const sendEmail = async (to, subject, message) => {
     console.log("Message:", message);
 
     // Simulate email processing time
-
-
-
-
-
-
-
-    
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     console.log("Email task completed successfully!");
@@ -25,5 +17,12 @@ const sendEmail = async (to, subject, message) => {
     };
 
 };
+
+
+
+
+
+
+
 
 export default sendEmail;
