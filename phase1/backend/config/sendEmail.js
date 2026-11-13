@@ -18,8 +18,4 @@ const sendEmail = async (to, subject, message) => {
 
 };
 
-
-
-
-
 export default sendEmail;
